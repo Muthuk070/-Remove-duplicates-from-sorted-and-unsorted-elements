@@ -1,0 +1,73 @@
+                                       Remove duplicates from sorted and unsorted elements
+
+
+public class function{
+	static Node head;
+	static class Node{
+		Node next;
+		int data;
+		Node(int d){
+			data=d;
+			next=null;
+		}
+	}
+	
+	public static void insert(int k) {
+		Node o = new Node(k);
+		if(head==null) {
+			head=o;
+		}else {
+			o.next=head;
+			head=o;
+		}
+	}
+	
+	public static void print() {
+		Node t=head;
+		while(t!=null) {
+			System.out.print(t.data+" ");
+			t=t.next;
+		}
+	}
+	
+	public static void removedup() {
+		for(Node h=head;h!=null;h=h.next) {
+			for(Node i=h.next;i!=null;i=i.next) {
+				if(h.data==i.data) {
+				delcall(i);
+				}
+			}
+		}
+	}
+	
+	public static void delcall(Node t) {
+
+		if(head==t) {
+			head=head.next;
+		}else {
+			Node p=null;
+			Node j=head;
+			while(j!=t) {
+				p=j;
+				j=j.next;
+			}
+			p.next=j.next;
+		}
+	}
+	public static void main(String [] args1) {
+		
+		insert(21);
+		insert(43);
+		insert(41);
+		insert(21);
+		insert(10);
+		insert(12);
+		insert(12);
+		
+		removedup();
+		print();
+		
+	}
+	}
+OUTPUT:
+12 10 21 41 43 
